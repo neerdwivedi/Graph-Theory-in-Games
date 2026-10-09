@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Graph theory in games: real-world uses, illustrated examples, and playable Chess and Subway runner demos.">
+<title>Press Start to Graph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="topbar">
+    <div class="brand"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="var(--muted)" stroke-width="1.6" fill="none"><path d="M5 6 L12 4 L19 9 L15 19 L6 17 Z M12 4 L15 19 M5 6 L19 9"/></g><circle cx="5" cy="6" r="2.8" style="fill:var(--c-violet)"/><circle cx="12" cy="4" r="2.8" style="fill:var(--c-pink)"/><circle cx="19" cy="9" r="2.8" style="fill:var(--c-sky)"/><circle cx="15" cy="19" r="2.8" style="fill:var(--c-teal)"/><circle cx="6" cy="17" r="2.8" style="fill:var(--c-sun)"/></svg>Press Start to Graph</div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="home" id="tab-home"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="8" r="2.6"/><circle cx="10" cy="18" r="2.6"/><path d="M8.5 6.6l7 1M7 8.4l2.2 7M16.5 10.2l-4.6 5.8"/></svg></span>Games &amp; graphs</button>
+      <button class="tab" role="tab" data-tab="project" id="tab-project"><span class="ti"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>Mini project</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ HOME ============ -->
+<section class="screen" id="screen-home">
+  <div class="hero">
+    <div class="intro">
+      <h1>Every game is secretly a <span class="hl">graph</span></h1>
+      <p>A graph is just dots (vertices) joined by lines (edges). That simple idea runs inside almost every game you play: how enemies find you, how levels are generated, how tournaments are scheduled and how online players get matched. This page shows where graph theory is used in real games, then lets you play two games built as graphs.</p>
+    </div>
+    <div class="hero-chips">
+      <span class="hchip" style="--cc:var(--c-pink)"><b>6</b> real-world uses</span>
+      <span class="hchip" style="--cc:var(--c-violet)"><b>8</b> game examples</span>
+      <span class="hchip" style="--cc:var(--c-teal)"><b>2</b> playable demos</span>
+      <span class="hchip" style="--cc:var(--c-coral)"><b>3</b> syllabus units covered</span>
+    </div>
+  </div>
+
+  <div class="panel anim" id="anim">
+    <div class="panel-head">
+      <div><span class="eyebrow">How real games do it</span><h2>How an enemy finds you in a real game</h2></div>
+      <div class="controls"><button class="btn ghost" id="aPlay">Pause</button><button class="btn ghost" id="aReplay">Replay</button></div>
+    </div>
+    <div class="anim-stage"><svg id="aSvg" viewBox="0 0 640 340" role="img" aria-label="Animation: a game level turned into a graph, then Dijkstra's algorithm finding the guard's shortest path to the player"></svg></div>
+    <div class="anim-cap"><span class="anim-num" id="aNum">1</span><div><h3 id="aTitle"></h3><p id="aCap"></p></div></div>
+    <div class="anim-steps" id="aSteps"></div>
+    <div class="real-grid">
+      <article class="app" style="--cc:var(--c-sky)">
+        <div class="app-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg></div>
+        <h3>Games made with Unity</h3>
+        <span class="chip">Shortest path · A*</span>
+        <p>Unity is one of the most widely used game engines. Its manual says the navigation system puts a node on each piece of the navigation mesh and uses A* to find the shortest path between them. Every Unity game whose enemies walk around obstacles is solving this graph problem.</p>
+        <a class="src" href="https://docs.unity3d.com/2019.1/Documentation/Manual/nav-AreasAndCosts.html" target="_blank" rel="noopener">Source: Unity Manual, Navigation Areas and Costs ↗</a>
+      </article>
+      <article class="app" style="--cc:var(--c-sun)">
+        <div class="app-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM8 3v6h8M8 21v-6h8V9M3 12h5"/><circle cx="16" cy="9" r="1.6" fill="currentColor"/><circle cx="8" cy="15" r="1.6" fill="currentColor"/></svg></div>
+        <h3>Pac-Man (1980)</h3>
+        <span class="chip">Maze graph · greedy choice</span>
+        <p>The maze's intersections are vertices and its corridors are edges. At each intersection a ghost picks the next tile closest, in a straight line, to its target. Blinky targets Pac-Man's own tile; Pinky aims four tiles ahead. This greedy rule is not a true shortest path, which is why ghosts sometimes take the long way round and why players could learn patterns to escape.</p>
+        <a class="src" href="https://gamedesignskills.com/game-design/pac-man-pathfinding/" target="_blank" rel="noopener">Source: Game Design Skills, Pac-Man pathfinding ↗</a>
+      </article>
+    </div>
+  </div>
+
+  <div class="panel-head"><h2>Where graph theory is used in real games</h2><span class="muted">The industry problems behind games you already know.</span></div>
+  <div class="apps">
+    <article class="app" style="--cc:var(--c-violet)">
+      <div class="app-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="18" r="2.5"/><circle cx="19" cy="6" r="2.5"/><path d="M7 16.5l3-3 3 2 4-7.5" stroke-dasharray="0"/><path d="M9 6h2M14 18h2" opacity=".5"/></svg></div>
+      <h3>Enemy and NPC pathfinding</h3>
+      <span class="chip">Shortest paths</span>
+      <p>Game maps are stored as a graph of walkable points or regions. When an enemy chases you in an open-world or strategy game, it runs a shortest-path search such as Dijkstra's algorithm or A* on that graph.</p>
+    </article>
+    <article class="app" style="--cc:var(--c-teal)">
+      <div class="app-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2.2"/><circle cx="5" cy="13" r="2.2"/><circle cx="19" cy="13" r="2.2"/><circle cx="3" cy="21" r="1.6"/><circle cx="8" cy="21" r="1.6"/><path d="M11 6l-5 5M13 6l5 5M5 15l-1.5 4.5M5.5 15l2 4.5"/></svg></div>
+      <h3>Chess engines and game AI</h3>
+      <span class="chip">Trees</span>
+      <p>Every position is a vertex and every move is an edge, so the game becomes a huge tree. Chess and tic-tac-toe programs search this tree a few moves deep to choose the best move.</p>
+    </article>
+    <article class="app" style="--cc:var(--c-sun)">
+      <div class="app-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM3 9h8M15 9v6M9 15h6M9 15v6"/></svg></div>
+      <h3>Random maze and dungeon levels</h3>
+      <span class="chip">Spanning trees</span>
+      <p>Games that build a fresh level every time often treat rooms as vertices and pick a random spanning tree (with Kruskal's or Prim's idea). That guarantees every room is reachable and there are no loops.</p>
+    </article>
+    <article class="app" style="--cc:var(--c-sky)">
+      <div class="app-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="3"/><circle cx="18" cy="7" r="3"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M9 7h6M8.5 18h7"/></svg></div>
+      <h3>Online matchmaking</h3>
+      <span class="chip">Matchings</span>
+      <p>Players waiting for a match are vertices, with an edge between players of similar skill and region. Pairing everyone fairly at once is a matching problem on that graph.</p>
+    </article>
+    <article class="app" style="--cc:var(--c-coral)">
+      <div class="app-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h4v4H3zM3 16h4v4H3zM7 6h4v12H7M11 12h5M16 10h5v4h-5z"/></svg></div>
+      <h3>Tournaments and esports brackets</h3>
+      <span class="chip">Complete graphs, binary trees</span>
+      <p>A league where every team plays every other team is a complete graph, and each round of fixtures is a perfect matching. A knockout bracket, as in cricket or tennis, is a binary tree with the champion at the root.</p>
+    </article>
+    <article class="app" style="--cc:var(--c-pink)">
+      <div class="app-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="10" width="7" height="5" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/><path d="M10 5.5h2v7h2M10 18.5h2v-6"/></svg></div>
+      <h3>Quests, skills and story choices</h3>
+      <span class="chip">Directed graphs</span>
+      <p>RPG skill trees, quest unlocks and branching dialogue are directed graphs. An arrow from A to B means "finish A before B", and designers check there are no cycles so every quest can be completed.</p>
+    </article>
+  </div>
+
+  <div class="panel-head"><h2>Turning any game into a graph</h2></div>
+  <div class="recipe">
+    <div class="rstep" style="--cc:var(--c-violet)"><span class="rn">1</span><div><h3>Pick the vertices</h3><p class="muted">Squares, rooms, teams, towns, lanes.</p></div></div>
+    <div class="rstep" style="--cc:var(--c-sky)"><span class="rn">2</span><div><h3>Pick the edges</h3><p class="muted">Moves, corridors, matches, roads.</p></div></div>
+    <div class="rstep" style="--cc:var(--c-coral)"><span class="rn">3</span><div><h3>Ask a graph question</h3><p class="muted">Path? Tree? Matching? Planar?</p></div></div>
+  </div>
+
+  <div class="panel-head"><h2>Classic games, drawn as graphs</h2><span class="muted">Left: the game. Right: the graph hiding inside it.</span></div>
+  <div class="gcards">
+
+    <article class="gcard" style="--cc:var(--c-violet)">
+      <div class="illus"><svg viewBox="0 0 260 120" role="img" aria-label="Knight on a board and its move graph">
+        <rect class="il-sq-l" x="10" y="10" width="100" height="100" rx="4"/>
+        <rect class="il-sq-d" x="35" y="10" width="25" height="25"/><rect class="il-sq-d" x="85" y="10" width="25" height="25"/>
+        <rect class="il-sq-d" x="10" y="35" width="25" height="25"/><rect class="il-sq-d" x="60" y="35" width="25" height="25"/>
+        <rect class="il-sq-d" x="35" y="60" width="25" height="25"/><rect class="il-sq-d" x="85" y="60" width="25" height="25"/>
+        <rect class="il-sq-d" x="10" y="85" width="25" height="25"/><rect class="il-sq-d" x="60" y="85" width="25" height="25"/>
+        <circle class="il-dot" cx="97.5" cy="22.5" r="5"/><circle class="il-dot" cx="97.5" cy="72.5" r="5"/><circle class="il-dot" cx="22.5" cy="97.5" r="5"/><circle class="il-dot" cx="72.5" cy="97.5" r="5"/>
+        <circle class="il-fill" cx="47.5" cy="47.5" r="11"/><text class="il-glyph" x="47.5" y="48.5">♞</text>
+        <path class="il-arrow" d="M118 60h22m-6-6 6 6-6 6"/>
+        <path class="il-hi" d="M205 60L165 25M205 60L245 25M205 60L165 95M205 60L245 95"/>
+        <circle class="il-node f" cx="205" cy="60" r="9"/><circle class="il-node" cx="165" cy="25" r="7"/><circle class="il-node" cx="245" cy="25" r="7"/><circle class="il-node" cx="165" cy="95" r="7"/><circle class="il-node" cx="245" cy="95" r="7"/>
+      </svg></div>
+      <span class="chip">Unit 2 · Hamiltonian path</span>
+      <h3>Chess knight</h3>
+      <p>Squares are vertices and knight jumps are edges. A knight's tour, visiting every square exactly once, is a Hamiltonian path.</p>
+    </article>
+
+    <article class="gcard" style="--cc:var(--c-teal)">
+      <div class="illus"><svg viewBox="0 0 260 120" role="img" aria-label="Maze and its spanning tree">
+        <rect class="il-scene" x="10" y="10" width="99" height="99" rx="4"/>
+        <path class="il-wall" d="M10 10h99v99H10Z M10 43h66 M43 76h66"/>
+        <circle class="il-fill" cx="26.5" cy="26.5" r="6"/><rect class="il-goal" x="85" y="85" width="13" height="13" rx="2"/>
+        <path class="il-arrow" d="M118 60h22m-6-6 6 6-6 6"/>
+        <path class="il-faint" d="M160 20v40M200 20v40M200 60v40M240 60v40"/>
+        <path class="il-hi" d="M160 20H240V60H160V100H240"/>
+        <circle class="il-node f" cx="160" cy="20" r="7"/><circle class="il-node" cx="200" cy="20" r="7"/><circle class="il-node" cx="240" cy="20" r="7"/>
+        <circle class="il-node" cx="160" cy="60" r="7"/><circle class="il-node" cx="200" cy="60" r="7"/><circle class="il-node" cx="240" cy="60" r="7"/>
+        <circle class="il-node" cx="160" cy="100" r="7"/><circle class="il-node" cx="200" cy="100" r="7"/><circle class="il-node f" cx="240" cy="100" r="7"/>
+      </svg></div>
+      <span class="chip">Unit 2 · Spanning trees</span>
+      <h3>Maze game</h3>
+      <p>Rooms are vertices and open passages are edges. A "perfect" maze, with exactly one route between any two rooms, is a spanning tree of the grid.</p>
+    </article>
+
+    <article class="gcard" style="--cc:var(--c-sun)">
+      <div class="illus"><svg viewBox="0 0 260 120" role="img" aria-label="Snakes and ladders board and its directed graph">
+        <rect class="il-scene" x="10" y="10" width="99" height="99" rx="4"/>
+        <path class="il-grid" d="M43 10v99M76 10v99M10 43h99M10 76h99"/>
+        <text class="il-num" x="26.5" y="30">7</text><text class="il-num" x="59.5" y="30">8</text><text class="il-num" x="92.5" y="30">9</text>
+        <text class="il-num" x="26.5" y="63">6</text><text class="il-num" x="59.5" y="63">5</text><text class="il-num" x="92.5" y="63">4</text>
+        <text class="il-num" x="26.5" y="96">1</text><text class="il-num" x="59.5" y="96">2</text><text class="il-num" x="92.5" y="96">3</text>
+        <path class="il-ladder" d="M53 88V22M66 88V22M53 75h13M53 62h13M53 49h13M53 36h13"/>
+        <path class="il-snake" d="M92 22c10 6-10 12 0 18s-8 10 0 14"/>
+        <path class="il-arrow" d="M118 60h22m-6-6 6 6-6 6"/>
+        <path class="il-faint" d="M160 100H240V60H160V20H240"/>
+        <path class="il-hi" d="M200 90Q232 60 200 30"/>
+        <path class="il-snake" d="M240 30V50"/>
+        <circle class="il-node" cx="160" cy="100" r="9"/><circle class="il-node f" cx="200" cy="100" r="9"/><circle class="il-node" cx="240" cy="100" r="9"/>
+        <circle class="il-node" cx="240" cy="60" r="9"/><circle class="il-node" cx="200" cy="60" r="9"/><circle class="il-node" cx="160" cy="60" r="9"/>
+        <circle class="il-node" cx="160" cy="20" r="9"/><circle class="il-node f" cx="200" cy="20" r="9"/><circle class="il-node" cx="240" cy="20" r="9"/>
+        <text class="il-nt" x="160" y="100">1</text><text class="il-nt w" x="200" y="100">2</text><text class="il-nt" x="240" y="100">3</text>
+        <text class="il-nt" x="240" y="60">4</text><text class="il-nt" x="200" y="60">5</text><text class="il-nt" x="160" y="60">6</text>
+        <text class="il-nt" x="160" y="20">7</text><text class="il-nt w" x="200" y="20">8</text><text class="il-nt" x="240" y="20">9</text>
+      </svg></div>
+      <span class="chip">Unit 2 · Digraphs</span>
+      <h3>Snakes &amp; Ladders</h3>
+      <p>Squares are vertices and moves are one-way edges. Ladders are shortcut edges, snakes go backwards, and the shortest path gives the fewest dice rolls to win.</p>
+    </article>
+
+    <article class="gcard" style="--cc:var(--c-pink)">
+      <div class="illus"><svg viewBox="0 0 260 120" role="img" aria-label="Tic-tac-toe board and its game tree">
+        <rect class="il-scene" x="15" y="12" width="96" height="96" rx="4"/>
+        <path class="il-grid thick" d="M47 18v84M79 18v84M21 44h84M21 76h84"/>
+        <path class="il-x" d="M54 51l18 18M72 51L54 69"/>
+        <circle class="il-o" cx="31" cy="28" r="9"/>
+        <path class="il-x" d="M86 83l12 12M98 83L86 95"/>
+        <path class="il-arrow" d="M118 60h22m-6-6 6 6-6 6"/>
+        <path class="il-hi" d="M205 18L170 60M205 18L205 60M205 18L240 60M170 60L158 100M170 60L182 100M240 60L230 100M240 60L250 100"/>
+        <circle class="il-node f" cx="205" cy="18" r="8"/>
+        <circle class="il-node" cx="170" cy="60" r="7"/><circle class="il-node" cx="205" cy="60" r="7"/><circle class="il-node" cx="240" cy="60" r="7"/>
+        <circle class="il-node" cx="158" cy="100" r="6"/><circle class="il-node" cx="182" cy="100" r="6"/><circle class="il-node" cx="230" cy="100" r="6"/><circle class="il-node" cx="250" cy="100" r="6"/>
+      </svg></div>
+      <span class="chip">Unit 2 · Rooted trees</span>
+      <h3>Tic-tac-toe</h3>
+      <p>Each board position is a vertex and each possible move is an edge to the next position. The whole game forms a rooted tree, with the empty board as the root.</p>
+    </article>
+
+    <article class="gcard" style="--cc:var(--c-sky)">
+      <div class="illus"><svg viewBox="0 0 260 120" role="img" aria-label="League fixtures and complete graph K4 split into three rounds">
+        <rect class="il-scene" x="10" y="10" width="100" height="100" rx="4"/>
+        <text class="il-fx" x="20" y="34"><tspan class="r1">R1</tspan> A–B · C–D</text>
+        <text class="il-fx" x="20" y="64"><tspan class="r2">R2</tspan> A–C · B–D</text>
+        <text class="il-fx" x="20" y="94"><tspan class="r3">R3</tspan> A–D · B–C</text>
+        <path class="il-arrow" d="M118 60h22m-6-6 6 6-6 6"/>
+        <path class="e-r1" d="M170 25H240M170 95H240"/><path class="e-r2" d="M170 25V95M240 25V95"/><path class="e-r3" d="M170 25L240 95M240 25L170 95"/>
+        <circle class="il-node" cx="170" cy="25" r="10"/><circle class="il-node" cx="240" cy="25" r="10"/><circle class="il-node" cx="170" cy="95" r="10"/><circle class="il-node" cx="240" cy="95" r="10"/>
+        <text class="il-nt" x="170" y="25">A</text><text class="il-nt" x="240" y="25">B</text><text class="il-nt" x="170" y="95">C</text><text class="il-nt" x="240" y="95">D</text>
+      </svg></div>
+      <span class="chip">Unit 3 · 1-factorization</span>
+      <h3>League tournament</h3>
+      <p>Teams are vertices and every pair must play, so the league is a complete graph K₄. Each round is a perfect matching, and the full schedule is a 1-factorization.</p>
+    </article>
+
+    <article class="gcard" style="--cc:var(--c-coral)">
+      <div class="illus"><svg viewBox="0 0 260 120" role="img" aria-label="One-stroke house puzzle and its degrees">
+        <rect class="il-scene" x="10" y="10" width="100" height="100" rx="4"/>
+        <path class="il-pen" d="M25 100H95V55H25ZM25 55L60 20L95 55M25 100L95 55M95 100L25 55"/>
+        <path class="il-arrow" d="M118 60h22m-6-6 6 6-6 6"/>
+        <path class="il-faint solid" d="M165 100H235V55H165ZM165 55L200 20L235 55M165 100L235 55M235 100L165 55"/>
+        <circle class="il-node bad" cx="165" cy="100" r="9"/><circle class="il-node bad" cx="235" cy="100" r="9"/>
+        <circle class="il-node" cx="165" cy="55" r="9"/><circle class="il-node" cx="235" cy="55" r="9"/><circle class="il-node" cx="200" cy="20" r="9"/>
+        <text class="il-nt w" x="165" y="100">3</text><text class="il-nt w" x="235" y="100">3</text><text class="il-nt" x="165" y="55">4</text><text class="il-nt" x="235" y="55">4</text><text class="il-nt" x="200" y="20">2</text>
+      </svg></div>
+      <span class="chip">Unit 2 · Eulerian trails</span>
+      <h3>One-stroke puzzle</h3>
+      <p>"Draw the house without lifting your pen" is an Euler trail question. Exactly two corners have odd degree, so it works only if you start at one and finish at the other.</p>
+    </article>
+
+    <article class="gcard" style="--cc:var(--c-teal)">
+      <div class="illus"><svg viewBox="0 0 260 120" role="img" aria-label="Town map and its minimum spanning tree">
+        <rect class="il-scene" x="10" y="10" width="100" height="100" rx="4"/>
+        <path class="il-road" d="M25 30L90 25M25 30L55 65M90 25L55 65M55 65L20 100M55 65L95 95M20 100L95 95M90 25L95 95"/>
+        <path class="il-house" d="M18 33v-7l7-6 7 6v7Z M83 28v-7l7-6 7 6v7Z M48 68v-7l7-6 7 6v7Z M13 103v-7l7-6 7 6v7Z M88 98v-7l7-6 7 6v7Z"/>
+        <path class="il-arrow" d="M118 60h22m-6-6 6 6-6 6"/>
+        <path class="il-faint" d="M165 30L230 25M160 100L235 95M230 25L235 95"/>
+        <path class="il-hi" d="M165 30L195 65M230 25L195 65M195 65L160 100M195 65L235 95"/>
+        <circle class="il-node" cx="165" cy="30" r="6"/><circle class="il-node" cx="230" cy="25" r="6"/><circle class="il-node f" cx="195" cy="65" r="7"/><circle class="il-node" cx="160" cy="100" r="6"/><circle class="il-node" cx="235" cy="95" r="6"/>
+        <text class="il-w" x="172" y="52">3</text><text class="il-w" x="218" y="50">4</text><text class="il-w" x="170" y="86">5</text><text class="il-w" x="220" y="86">2</text><text class="il-w" x="197" y="20">6</text><text class="il-w" x="245" y="64">8</text><text class="il-w" x="197" y="110">7</text>
+      </svg></div>
+      <span class="chip">Unit 2 · Minimum spanning tree</span>
+      <h3>City-building roads</h3>
+      <p>Towns are vertices and possible roads are weighted edges. The cheapest way to connect every town is the minimum spanning tree: here 2 + 3 + 4 + 5 = 14.</p>
+    </article>
+
+    <article class="gcard" style="--cc:var(--c-pink)">
+      <div class="illus"><svg viewBox="0 0 260 120" role="img" aria-label="Runner lanes and the move graph">
+        <rect style="fill:var(--lane0)" x="10" y="12" width="100" height="28" rx="6"/><rect style="fill:var(--lane1)" x="10" y="46" width="100" height="28" rx="6"/><rect style="fill:var(--lane2)" x="10" y="80" width="100" height="28" rx="6"/>
+        <rect class="il-train" x="64" y="15" width="34" height="22" rx="5"/><rect class="il-win" x="69" y="19" width="10" height="7" rx="2"/><rect class="il-win" x="83" y="19" width="10" height="7" rx="2"/>
+                <circle class="il-fill" cx="24" cy="60" r="9"/>
+        <path class="il-arrow" d="M118 60h22m-6-6 6 6-6 6"/>
+        <path class="il-faint" d="M160 25H190M160 60H250M160 95H220M160 25L190 60M160 60L190 25M160 60L190 95M160 95L190 60M190 60L220 95M190 95L220 60M220 60L250 25M220 95L250 60M220 60L250 95M220 95L250 95M190 25L220 60"/>
+        <path class="il-hi" d="M160 60L190 95L220 95L250 60"/>
+        <path class="il-cross" d="M214 19l12 12M226 19l-12 12"/>
+        <circle class="il-node f" cx="160" cy="60" r="7"/><circle class="il-node" cx="160" cy="25" r="6"/><circle class="il-node" cx="160" cy="95" r="6"/>
+        <circle class="il-node" cx="190" cy="25" r="6"/><circle class="il-node" cx="190" cy="60" r="6"/><circle class="il-node" cx="190" cy="95" r="6"/>
+        <circle class="il-node" cx="220" cy="60" r="6"/><circle class="il-node" cx="220" cy="95" r="6"/>
+        <circle class="il-node" cx="250" cy="25" r="6"/><circle class="il-node f" cx="250" cy="60" r="7"/><circle class="il-node" cx="250" cy="95" r="6"/>
+      </svg></div>
+      <span class="chip">Unit 2 · Paths in digraphs</span>
+      <h3>Endless runner</h3>
+      <p>Each lane position is a vertex and each step forward is an edge. A train deletes a vertex, and surviving means finding a path from start to finish.</p>
+    </article>
+  </div>
+
+  <div class="cta-band">
+    <div><span class="eyebrow">Mini project</span><h2>Now play two of them</h2><p class="muted">Chess and a Subway-style endless runner, fully playable, with every graph property computed live as you play.</p></div>
+    <button class="btn play-btn" data-go="chess"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play the game</button>
+  </div>
+</section>
+
+<!-- ============ MINI PROJECT ============ -->
+<section class="screen" id="screen-project" hidden>
+  <div class="intro">
+    <h1>Chess and Subway runner, <span class="hl">as graphs</span></h1>
+  </div>
+
+  <div class="gswitch" role="group" aria-label="Choose demo">
+    <button class="gbtn" data-game="chess" style="--cc:var(--c-teal)"><span class="badge" style="--bc:var(--c-teal)">♞</span><span><b>Chess</b><small>Squares and moves. Knight's tour, bipartite, non-planar.</small></span></button>
+    <button class="gbtn" data-game="subway" style="--cc:var(--c-coral)"><span class="badge" style="--bc:var(--c-coral)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="4"/><path d="M5 10h14M8 17l-2 4M16 17l2 4"/><circle cx="9" cy="13.5" r=".9"/><circle cx="15" cy="13.5" r=".9"/></svg></span><span><b>Subway runner</b><small>Lanes and trains. Run counting, choke points, cut-vertices.</small></span></button>
+  </div>
+
+  <!-- CHESS -->
+  <div class="subscreen" id="screen-chess">
+    <div class="split">
+      <div class="panel">
+        <div class="panel-head"><h2>♞ Live demo</h2><span class="muted" style="font-size:13px">Click any square</span></div>
+        <div class="controls">
+          <div class="seg" id="pieceSeg" aria-label="Piece"></div>
+          <select id="nSel" aria-label="Board size">
+            <option value="5">5 × 5</option><option value="6">6 × 6</option><option value="7">7 × 7</option><option value="8" selected>8 × 8</option>
+          </select>
+        </div>
+        <div class="controls">
+          <div class="seg" id="modeSeg" aria-label="View">
+            <button data-mode="moves">Moves</button><button data-mode="degree">Degree heatmap</button><button data-mode="parts">Bipartition</button><button data-mode="tour">Hamiltonian tour</button>
+          </div>
+          <label class="chk" id="matchWrap" hidden><input type="checkbox" id="matchChk"> Show perfect matching</label>
+        </div>
+        <div class="board-box" id="board"></div>
+        <p class="note" id="chessNote"></p>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2 id="chessTitle">Knight graph</h2><span class="pill info" id="chessBadge">8 × 8</span></div>
+        <div class="rows" id="chessStats"></div>
+      </div>
+    </div>
+
+    <div class="mini-grid">
+      <div class="panel">
+        <div class="panel-head"><h3>Degree distribution</h3><span class="muted mono" style="font-size:12px">vertices per degree</span></div>
+        <div class="chart" id="chessDeg"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Adjacency matrix</h3><span class="muted mono" style="font-size:12px" id="adjLab">64 × 64</span></div>
+        <canvas id="adjCanvas" width="256" height="256" aria-label="Adjacency matrix"></canvas>
+        <p class="muted" style="font-size:13px">The selected square's row is orange. The matrix is symmetric because moves work both ways.</p>
+      </div>
+    </div>
+
+    <div class="panel explain" style="--cc:var(--c-teal)">
+      <h2>What the demo shows</h2>
+      <div class="ex-grid">
+        <div><h3>The model</h3><p>Each square is a vertex. Two squares share an edge if the chosen piece can move between them. Five pieces give five different graphs on the same 64 vertices.</p></div>
+        <div><h3>Degree and bipartite</h3><p>A square's degree is its number of moves: 2 in a knight's corner, 8 in the centre. A knight always lands on the opposite colour, so its graph is bipartite.</p></div>
+        <div><h3>Knight's tour</h3><p>Warnsdorff's rule jumps to the square with the fewest onward moves. It finds a Hamiltonian path that visits all 64 squares once. Pairing steps 1–2, 3–4, … gives a perfect matching.</p></div>
+        <div><h3>Non-planar</h3><p>A planar bipartite graph has at most 2V − 4 edges. The knight graph has 168 > 124, so it cannot be drawn flat without crossings.</p></div>
+      </div>
+      <div class="try"><b>Try this:</b> pick the bishop and see it split into 2 components · on 5 × 5, start a tour from b5 to see the parity proof · run a tour, then tick "Show perfect matching".</div>
+    </div>
+  </div>
+
+  <!-- SUBWAY -->
+  <div class="subscreen" id="screen-subway" hidden>
+    <div class="panel">
+      <div class="panel-head"><h2>Live demo</h2><span class="muted" style="font-size:13px">Click any cell to place or remove a train</span></div>
+      <div class="controls">
+        <div class="seg" id="levelSeg" aria-label="Level">
+          <button data-level="random">Random level</button><button data-level="choke">Choke points</button><button data-level="open">Open track</button>
+        </div>
+        <button class="btn ghost" id="reroll">New random level</button>
+        <button class="btn" id="runBtn">Run fewest-switch route</button>
+        <label class="chk"><input type="checkbox" id="edgeChk" checked> Edges</label>
+        <label class="chk"><input type="checkbox" id="mustChk" checked> Must-pass points</label>
+        <label class="chk"><input type="checkbox" id="cutChk"> Cut-vertices</label>
+      </div>
+      <div class="track-box" id="track"></div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--train)"></i><i class="sw" style="background:var(--train2)"></i>Train (vertex removed)</span>
+        <span><i class="sw" style="background:var(--hot);border-radius:50%"></i>Runner and fewest-switch route</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24"><polygon points="12,1 15,9 23,9 16.5,14 19,22 12,17 5,22 7.5,14 1,9 9,9" style="fill:var(--c-pink)"/></svg>Must-pass: every run goes through it</span>
+        <span><i class="sw" style="background:var(--accent);transform:rotate(45deg) scale(.8)"></i>Cut-vertex of the underlying graph</span>
+        <span><i class="sw" style="background:var(--lane0)"></i><i class="sw" style="background:var(--lane1)"></i><i class="sw" style="background:var(--lane2)"></i>Left, middle, right lanes</span>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="panel">
+        <div class="panel-head"><h2>Run analysis</h2><span id="survPill"></span></div>
+        <div class="kpis">
+          <div class="kpi"><span class="lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18c4 0 4-12 9-12s5 12 9 12"/><circle cx="3" cy="18" r="1.5"/><circle cx="21" cy="18" r="1.5"/></svg>Distinct survivable runs</span><span class="big" id="kRuns">0</span></div>
+          <div class="kpi"><span class="lab"><svg viewBox="0 0 24 24"><polygon points="12,1 15,9 23,9 16.5,14 19,22 12,17 5,22 7.5,14 1,9 9,9" fill="currentColor"/></svg>Must-pass points</span><span class="big" id="kMust">0</span></div>
+          <div class="kpi"><span class="lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-3-3M20 16H6l3 3"/></svg>Fewest lane switches</span><span class="big" id="kSw">0</span></div>
+        </div>
+        <p class="note" id="subNote"></p>
+        <div class="panel-head"><h3>Degree distribution</h3><span class="muted mono" style="font-size:12px">underlying undirected graph</span></div>
+        <div class="chart" id="subDeg"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Track graph properties</h2><span class="pill info">3 × 20</span></div>
+        <div class="rows" id="subStats"></div>
+      </div>
+    </div>
+
+    <div class="panel explain" style="--cc:var(--c-coral)">
+      <h2>What the demo shows</h2>
+      <div class="ex-grid">
+        <div><h3>The model</h3><p>Three lanes, twenty steps. Each free cell is a vertex. An edge is one step forward: stay in lane or switch one lane over. A train deletes its vertex and all its edges.</p></div>
+        <div><h3>Counting runs</h3><p>Runs into a cell = the sum of runs into the cells that lead to it. Working left to right gives the total number of survivable runs.</p></div>
+        <div><h3>Must-pass vs cut-vertex</h3><p>A must-pass point lies on every start-to-finish run. A cut-vertex disconnects the graph somewhere. Every must-pass point (other than the start) is a cut-vertex, but not every cut-vertex is a must-pass point.</p></div>
+        <div><h3>Bipartite, non-planar</h3><p>Edges always join step k to step k + 1, so even and odd steps form the two parts. The open track has E = 133 > 2V − 4 = 116, so it is non-planar.</p></div>
+      </div>
+      <div class="try"><b>Try this:</b> open track for the huge run count · choke points to see the stars · block the last free lane at a star to get "No way through" · press Run to watch the route.</div>
+    </div>
+  </div>
+
+  <!-- HOW IT'S BUILT -->
+  <div class="panel">
+    <h2>How it's built</h2>
+    <div class="steps">
+      <div class="step"><span class="n">Step 1</span><h3>Model the game</h3><p class="muted">Decide what a vertex and an edge mean. This sentence goes at the top of your report.</p></div>
+      <div class="step"><span class="n">Step 2</span><h3>Build the adjacency list</h3><p class="muted">A function that loops over every square or cell and lists its neighbours.</p></div>
+      <div class="step"><span class="n">Step 3</span><h3>Run the algorithms</h3><p class="muted">BFS for components and bipartiteness, Tarjan for cut-vertices, Warnsdorff for the tour, DP for path counts.</p></div>
+      <div class="step"><span class="n">Step 4</span><h3>Draw the screens</h3><p class="muted">Render the board or track as SVG and recompute every number whenever the user changes something.</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head"><h2>Syllabus coverage</h2><span class="muted">Every number in the demos is computed live from the graph.</span></div>
+    <div class="tbl-box"><table>
+      <thead><tr><th>Unit</th><th>Topic</th><th>Chess</th><th>Subway runner</th></tr></thead>
+      <tbody>
+        <tr><td class="u">Unit 1</td><td>Order, size, degree sequence</td><td>Degree heatmap and chart per piece</td><td>Degree chart of the track</td></tr>
+        <tr><td class="u">Unit 1</td><td>Regular graphs</td><td>Checks regularity (none of the pieces are)</td><td>Checked live</td></tr>
+        <tr><td class="u">Unit 1</td><td>Bipartite graphs</td><td>Knight is bipartite; king and queen are not</td><td>Always bipartite: even vs odd steps</td></tr>
+        <tr><td class="u">Unit 1</td><td>Complement, matrices</td><td>Complement size, live adjacency matrix</td><td>Complement size</td></tr>
+        <tr><td class="u">Unit 1</td><td>Connected graphs</td><td>Bishop graph splits into 2 components</td><td>Trains can disconnect the track</td></tr>
+        <tr><td class="u">Unit 2</td><td>Cut-vertices and bridges</td><td>Counted per piece</td><td>Cut-vertices drawn on the track</td></tr>
+        <tr><td class="u">Unit 2</td><td>Hamiltonian graphs</td><td>Knight's tour, with a parity proof when impossible</td><td>-</td></tr>
+        <tr><td class="u">Unit 2</td><td>Eulerian graphs</td><td>Odd-degree test</td><td>Odd-degree test</td></tr>
+        <tr><td class="u">Unit 2</td><td>Digraphs, paths</td><td>-</td><td>Run counting and fewest-switch route</td></tr>
+        <tr><td class="u">Unit 3</td><td>Matching, 1-factor</td><td>Perfect matching taken from the tour</td><td>-</td></tr>
+        <tr><td class="u">Unit 3</td><td>Planar graphs, Euler's formula</td><td>Non-planarity proved by the edge bound</td><td>Non-planarity proved by the edge bound</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head"><h2>Core code (Python + NetworkX, for the report)</h2></div>
+<pre><span class="c"># Chess: knight graph on an n x n board</span>
+import networkx as nx
+def knight_graph(n=8):
+    G = nx.Graph()
+    jumps = [(1,2),(2,1),(-1,2),(-2,1),(1,-2),(2,-1),(-1,-2),(-2,-1)]
+    for r in range(n):
+        for c in range(n):
+            for dr, dc in jumps:
+                if 0 &lt;= r+dr &lt; n and 0 &lt;= c+dc &lt; n:
+                    G.add_edge((r, c), (r+dr, c+dc))
+    return G
+
+<span class="c"># Subway: 3-lane track, trains remove cells</span>
+def track_graph(length, trains):          <span class="c"># trains = set of (lane, step)</span>
+    G = nx.DiGraph()
+    for s in range(length - 1):
+        for lane in range(3):
+            for d in (-1, 0, 1):          <span class="c"># switch left, stay, switch right</span>
+                a, b = (lane, s), (lane + d, s + 1)
+                if 0 &lt;= lane+d &lt; 3 and a not in trains and b not in trains:
+                    G.add_edge(a, b)
+    return G
+
+G = knight_graph()
+print(G.number_of_nodes(), G.number_of_edges())   <span class="c"># 64 168</span>
+print(nx.is_bipartite(G))                          <span class="c"># True</span>
+print(list(nx.articulation_points(track_graph(20, {(0,5),(2,5)}).to_undirected())))</pre>
+  </div>
+</section>
+</main>
+
+<script src="js/graph.js"></script>
+<script src="js/chess.js"></script>
+<script src="js/subway.js"></script>
+<script src="js/animation.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
