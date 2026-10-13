@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Graph theory in games: real-world uses, illustrated examples, and playable Chess and Subway runner demos.">
+<meta name="description" content="Graph theory in games: real-world uses, illustrated examples, and six playable demos: Chess, Subway runner, One-stroke puzzle, Flood-It, Tic-tac-toe AI and Maze builder.">
 <title>Press Start to Graph</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -28,12 +28,12 @@
   <div class="hero">
     <div class="intro">
       <h1>Every game is secretly a <span class="hl">graph</span></h1>
-      <p>A graph is just dots (vertices) joined by lines (edges). That simple idea runs inside almost every game you play: how enemies find you, how levels are generated, how tournaments are scheduled and how online players get matched. This page shows where graph theory is used in real games, then lets you play two games built as graphs.</p>
+      <p>A graph is just dots (vertices) joined by lines (edges). That simple idea runs inside almost every game you play: how enemies find you, how levels are generated, how tournaments are scheduled and how online players get matched. This page shows where graph theory is used in real games, then lets you play six games built as graphs.</p>
     </div>
     <div class="hero-chips">
       <span class="hchip" style="--cc:var(--c-pink)"><b>6</b> real-world uses</span>
       <span class="hchip" style="--cc:var(--c-violet)"><b>8</b> game examples</span>
-      <span class="hchip" style="--cc:var(--c-teal)"><b>2</b> playable demos</span>
+      <span class="hchip" style="--cc:var(--c-teal)"><b>6</b> playable demos</span>
       <span class="hchip" style="--cc:var(--c-coral)"><b>3</b> syllabus units covered</span>
     </div>
   </div>
@@ -129,6 +129,7 @@
       </svg></div>
       <span class="chip">Unit 2 · Hamiltonian path</span>
       <h3>Chess knight</h3>
+      <button class="card-play" data-go="chess">▶ Play it</button>
       <p>Squares are vertices and knight jumps are edges. A knight's tour, visiting every square exactly once, is a Hamiltonian path.</p>
     </article>
 
@@ -146,6 +147,7 @@
       </svg></div>
       <span class="chip">Unit 2 · Spanning trees</span>
       <h3>Maze game</h3>
+      <button class="card-play" data-go="maze">▶ Play it</button>
       <p>Rooms are vertices and open passages are edges. A "perfect" maze, with exactly one route between any two rooms, is a spanning tree of the grid.</p>
     </article>
 
@@ -189,6 +191,7 @@
       </svg></div>
       <span class="chip">Unit 2 · Rooted trees</span>
       <h3>Tic-tac-toe</h3>
+      <button class="card-play" data-go="ttt">▶ Play it</button>
       <p>Each board position is a vertex and each possible move is an edge to the next position. The whole game forms a rooted tree, with the empty board as the root.</p>
     </article>
 
@@ -220,6 +223,7 @@
       </svg></div>
       <span class="chip">Unit 2 · Eulerian trails</span>
       <h3>One-stroke puzzle</h3>
+      <button class="card-play" data-go="stroke">▶ Play it</button>
       <p>"Draw the house without lifting your pen" is an Euler trail question. Exactly two corners have odd degree, so it works only if you start at one and finish at the other.</p>
     </article>
 
@@ -255,12 +259,13 @@
       </svg></div>
       <span class="chip">Unit 2 · Paths in digraphs</span>
       <h3>Endless runner</h3>
+      <button class="card-play" data-go="subway">▶ Play it</button>
       <p>Each lane position is a vertex and each step forward is an edge. A train deletes a vertex, and surviving means finding a path from start to finish.</p>
     </article>
   </div>
 
   <div class="cta-band">
-    <div><span class="eyebrow">Mini project</span><h2>Now play two of them</h2><p class="muted">Chess and a Subway-style endless runner, fully playable, with every graph property computed live as you play.</p></div>
+    <div><span class="eyebrow">Mini project</span><h2>Now play six of them</h2><p class="muted">Chess, a Subway-style endless runner, a one-stroke puzzle, Flood-It, tic-tac-toe against a minimax AI and a maze builder, with every graph property computed live as you play.</p></div>
     <button class="btn play-btn" data-go="chess"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play the game</button>
   </div>
 </section>
@@ -268,12 +273,17 @@
 <!-- ============ MINI PROJECT ============ -->
 <section class="screen" id="screen-project" hidden>
   <div class="intro">
-    <h1>Chess and Subway runner, <span class="hl">as graphs</span></h1>
+    <h1>Six games, <span class="hl">as graphs</span></h1>
+    <p>Two deep analysers (Chess and Subway runner) and four quick games, each built on a different graph idea.</p>
   </div>
 
   <div class="gswitch" role="group" aria-label="Choose demo">
     <button class="gbtn" data-game="chess" style="--cc:var(--c-teal)"><span class="badge" style="--bc:var(--c-teal)">♞</span><span><b>Chess</b><small>Squares and moves. Knight's tour, bipartite, non-planar.</small></span></button>
     <button class="gbtn" data-game="subway" style="--cc:var(--c-coral)"><span class="badge" style="--bc:var(--c-coral)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="4"/><path d="M5 10h14M8 17l-2 4M16 17l2 4"/><circle cx="9" cy="13.5" r=".9"/><circle cx="15" cy="13.5" r=".9"/></svg></span><span><b>Subway runner</b><small>Lanes and trains. Run counting, choke points, cut-vertices.</small></span></button>
+    <button class="gbtn" data-game="stroke" style="--cc:var(--c-sky)"><span class="badge" style="--bc:var(--c-sky)">✎</span><span><b>One-stroke puzzle</b><small>Draw it without lifting the pen. Euler trails, degrees.</small></span></button>
+    <button class="gbtn" data-game="flood" style="--cc:var(--c-sun)"><span class="badge" style="--bc:var(--c-sun)">▦</span><span><b>Flood-It</b><small>Colour regions. Components, region graph, BFS bound.</small></span></button>
+    <button class="gbtn" data-game="ttt" style="--cc:var(--c-pink)"><span class="badge" style="--bc:var(--c-pink)">#</span><span><b>Tic-tac-toe AI</b><small>Beat the computer. Game tree, minimax.</small></span></button>
+    <button class="gbtn" data-game="maze" style="--cc:var(--c-teal)"><span class="badge" style="--bc:var(--c-teal)">⌗</span><span><b>Maze builder</b><small>Build and escape. Spanning trees, BFS.</small></span></button>
   </div>
 
   <!-- CHESS -->
@@ -380,42 +390,198 @@
     </div>
   </div>
 
+  <!-- ONE-STROKE -->
+  <div class="subscreen" id="screen-stroke" hidden>
+    <div class="split">
+      <div class="panel">
+        <div class="panel-head"><h2>✎ Live demo</h2><span class="muted" style="font-size:13px">Trace every line once without lifting your pen</span></div>
+        <div class="controls"><div class="seg" id="osSeg" aria-label="Puzzle"></div></div>
+        <div class="board-box" id="osBoard"></div>
+        <div class="controls">
+          <button class="btn ghost" id="osUndo">Undo</button><button class="btn ghost" id="osReset">Reset</button>
+          <button class="btn ghost" id="osHint">Hint</button><button class="btn" id="osSolve">Show solution (Hierholzer)</button>
+          <label class="chk"><input type="checkbox" id="osOddChk"> Highlight odd-degree vertices</label>
+        </div>
+        <p class="note" id="osNote"></p>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Can it be drawn?</h2><span class="pill info">Euler, 1736</span></div>
+        <div id="osVerdict"></div>
+        <div class="rows" id="osStats"></div>
+      </div>
+    </div>
+    <div class="panel explain" style="--cc:var(--c-sky)">
+      <h2>What the demo shows</h2>
+      <div class="ex-grid">
+        <div><h3>The model</h3><p>Each corner of the drawing is a vertex and each line is an edge. Drawing it in one stroke means walking along every edge exactly once: an Euler trail.</p></div>
+        <div><h3>Why degrees decide</h3><p>Every time the pen passes through a vertex it uses one edge in and one edge out. So every vertex except the start and end needs even degree.</p></div>
+        <div><h3>Euler's theorem</h3><p>A connected graph has an Euler circuit if 0 vertices have odd degree, and an Euler trail if exactly 2 do. With 4 or more odd vertices it is impossible.</p></div>
+        <div><h3>Hierholzer's algorithm</h3><p>"Show solution" walks until stuck, then splices in detours from earlier vertices. It finds a full trail in time proportional to the number of edges.</p></div>
+      </div>
+      <div class="try"><b>Try this:</b> start the house from a top corner and get stuck · the crossed square has four odd vertices, so it can never be solved · open the designer and build your own.</div>
+    </div>
+  </div>
+
+  <!-- FLOOD-IT -->
+  <div class="subscreen" id="screen-flood" hidden>
+    <div class="split">
+      <div class="panel">
+        <div class="panel-head"><h2>▦ Live demo</h2><span id="flPill"></span></div>
+        <div class="controls">
+          <div class="seg" id="flView" aria-label="View"><button data-v="grid">Grid</button><button data-v="graph">Region graph</button></div>
+          <button class="btn ghost" id="flUndo">Undo</button><button class="btn ghost" id="flRestart">Restart</button>
+          <button class="btn ghost" id="flNew">New board</button><button class="btn" id="flHint">Greedy hint</button>
+        </div>
+        <div class="board-box fl-box" id="flBoard"></div>
+        <div class="fl-sws" id="flSw" aria-label="Choose a colour"></div>
+        <p class="note" id="flNote"></p>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Flood analysis</h2><span class="pill info">10 × 10</span></div>
+        <div class="kpis">
+          <div class="kpi"><span class="lab">Moves</span><span class="big" id="flMoves">0</span></div>
+          <div class="kpi"><span class="lab">Your region</span><span class="big" id="flSize" style="font-size:26px">1</span></div>
+          <div class="kpi"><span class="lab">Regions left</span><span class="big" id="flLeft">0</span></div>
+        </div>
+        <div class="rows" id="flStats"></div>
+      </div>
+    </div>
+    <div class="panel explain" style="--cc:var(--c-sun)">
+      <h2>What the demo shows</h2>
+      <div class="ex-grid">
+        <div><h3>The model</h3><p>Each cell is a vertex joined to its four neighbours: a 10 × 10 grid graph. Keeping only edges between cells of the same colour splits it into connected components, found with BFS.</p></div>
+        <div><h3>Region graph</h3><p>Shrink each component to one vertex and join two regions if they touch. Your region starts top-left; each move merges it with neighbouring regions of the chosen colour.</p></div>
+        <div><h3>A lower bound</h3><p>The numbers in the graph view are BFS distances from your region. A move cuts each distance by at most 1, so the eccentricity is a lower bound on the moves left.</p></div>
+        <div><h3>Greedy vs optimal</h3><p>The hint picks the colour that absorbs the most cells right now. It is fast but not always optimal: finding the true minimum for Flood-It is NP-hard.</p></div>
+      </div>
+      <div class="try"><b>Try this:</b> switch to Region graph and watch it shrink as you play · try to finish in fewer moves than greedy · compare your moves with the lower bound.</div>
+    </div>
+  </div>
+
+  <!-- TIC-TAC-TOE -->
+  <div class="subscreen" id="screen-ttt" hidden>
+    <div class="split">
+      <div class="panel">
+        <div class="panel-head"><h2># Live demo</h2><span id="ttStatus"></span></div>
+        <div class="controls">
+          <div class="seg" id="ttFirst" aria-label="Who starts"><button data-f="you">You start (X)</button><button data-f="ai">Computer starts</button></div>
+          <button class="btn" id="ttNew">New game</button>
+          <label class="chk"><input type="checkbox" id="ttValChk"> Show what each move leads to</label>
+        </div>
+        <div class="tt-board" id="ttBoard" role="grid" aria-label="Tic-tac-toe board"></div>
+        <div class="panel-head"><h3>Why this move?</h3><span class="muted mono" style="font-size:12px">the computer's last decision</span></div>
+        <div class="tt-tree" id="ttTree"></div>
+        <p class="note" id="ttWhy"></p>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Game-tree properties</h2><span class="pill info">Minimax</span></div>
+        <div class="rows" id="ttStats"></div>
+      </div>
+    </div>
+    <div class="panel explain" style="--cc:var(--c-pink)">
+      <h2>What the demo shows</h2>
+      <div class="ex-grid">
+        <div><h3>The model</h3><p>Here a vertex is a whole board position, not a square. An edge joins a position to each position one move later. Starting from the empty board, this forms a rooted tree.</p></div>
+        <div><h3>Counting the tree</h3><p>The full tree has 5,49,946 nodes because the same position can be reached in different orders. Merging equal positions leaves 5,478 distinct ones.</p></div>
+        <div><h3>Minimax</h3><p>Leaves score +10 (computer wins), −10 (you win) or 0. Going up, the computer takes the maximum and you take the minimum. The root's value is 0: perfect play is a draw.</p></div>
+        <div><h3>Why this move?</h3><p>The small tree shows the current position (root), each possible move (children) and the minimax result of each branch. The pink edge is the branch it chose.</p></div>
+      </div>
+      <div class="try"><b>Try this:</b> tick "Show what each move leads to" and pick a losing square on purpose · let the computer start and watch it search the whole tree · try to beat it (you can't).</div>
+    </div>
+  </div>
+
+  <!-- MAZE -->
+  <div class="subscreen" id="screen-maze" hidden>
+    <div class="panel">
+      <div class="panel-head"><h2>⌗ Live demo</h2><span id="mzPill"></span></div>
+      <div class="controls">
+        <div class="seg" id="mzAlgo" aria-label="Generation algorithm"><button data-a="dfs">DFS backtracker</button><button data-a="kruskal">Kruskal</button></div>
+        <button class="btn ghost" id="mzNew">New maze</button><button class="btn" id="mzWatch">Watch it being built</button>
+        <label class="chk"><input type="checkbox" id="mzGraphChk"> Spanning tree</label>
+        <label class="chk"><input type="checkbox" id="mzBfsChk"> BFS distances</label>
+        <label class="chk"><input type="checkbox" id="mzPathChk"> Shortest escape</label>
+      </div>
+      <div class="mz-wrap">
+        <div class="board-box mz-box" id="mzBoard"></div>
+        <div class="mz-pad" id="mzPad" aria-label="Move">
+          <span></span><button class="btn ghost" data-d="0,-1" aria-label="Up">↑</button><span></span>
+          <button class="btn ghost" data-d="-1,0" aria-label="Left">←</button><span></span><button class="btn ghost" data-d="1,0" aria-label="Right">→</button>
+          <span></span><button class="btn ghost" data-d="0,1" aria-label="Down">↓</button><span></span>
+        </div>
+      </div>
+      <p class="note" id="mzNote"></p>
+    </div>
+    <div class="split">
+      <div class="panel">
+        <div class="panel-head"><h2>Two algorithms, one kind of answer</h2></div>
+        <div class="ex-grid">
+          <div><h3>DFS backtracker</h3><p>Walk to a random unvisited neighbour, knocking down the wall. When stuck, back up. Gives long, winding corridors.</p></div>
+          <div><h3>Kruskal</h3><p>Shuffle every wall. Remove it only if the rooms on each side are not yet connected (union-find). Gives many short dead ends.</p></div>
+        </div>
+        <p class="muted" style="font-size:14px">Both produce a spanning tree of the 14 × 9 grid graph. Then BFS from the start finds the unique route to the exit.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Maze graph properties</h2><span class="pill info">14 × 9</span></div>
+        <div class="rows" id="mzStats"></div>
+      </div>
+    </div>
+    <div class="panel explain" style="--cc:var(--c-teal)">
+      <h2>What the demo shows</h2>
+      <div class="ex-grid">
+        <div><h3>The model</h3><p>Rooms are vertices and open passages are edges. Every possible wall is an edge of the grid graph; the maze keeps some of them.</p></div>
+        <div><h3>Spanning tree</h3><p>A perfect maze has every room reachable and no loops: a tree. A tree on V vertices always has V − 1 edges, here 126 − 1 = 125.</p></div>
+        <div><h3>Every edge is a bridge</h3><p>Remove any passage from a tree and it falls into two pieces, so every edge is a bridge. Dead ends are the leaves (degree 1).</p></div>
+        <div><h3>BFS escape</h3><p>Breadth-first search visits rooms in order of distance from the start. In a tree the shortest route is also the only simple route.</p></div>
+      </div>
+      <div class="try"><b>Try this:</b> press "Watch it being built" for both algorithms and compare · tick BFS distances to see the layers · escape without peeking, then compare with the shortest route.</div>
+    </div>
+  </div>
+
   <!-- HOW IT'S BUILT -->
   <div class="panel">
     <h2>How it's built</h2>
     <div class="steps">
       <div class="step"><span class="n">Step 1</span><h3>Model the game</h3><p class="muted">Decide what a vertex and an edge mean. This sentence goes at the top of your report.</p></div>
       <div class="step"><span class="n">Step 2</span><h3>Build the adjacency list</h3><p class="muted">A function that loops over every square or cell and lists its neighbours.</p></div>
-      <div class="step"><span class="n">Step 3</span><h3>Run the algorithms</h3><p class="muted">BFS for components and bipartiteness, Tarjan for cut-vertices, Warnsdorff for the tour, DP for path counts.</p></div>
-      <div class="step"><span class="n">Step 4</span><h3>Draw the screens</h3><p class="muted">Render the board or track as SVG and recompute every number whenever the user changes something.</p></div>
+      <div class="step"><span class="n">Step 3</span><h3>Run the algorithms</h3><p class="muted">BFS for components, bipartiteness and shortest paths, Tarjan for cut-vertices, Warnsdorff for the tour, DP for path counts, Hierholzer for Euler trails, minimax for the game tree, DFS and Kruskal for spanning trees.</p></div>
+      <div class="step"><span class="n">Step 4</span><h3>Draw the screens</h3><p class="muted">Render the board, track, drawing or maze as SVG and recompute every number whenever the user changes something.</p></div>
     </div>
   </div>
 
   <div class="panel">
     <div class="panel-head"><h2>Syllabus coverage</h2><span class="muted">Every number in the demos is computed live from the graph.</span></div>
     <div class="tbl-box"><table>
-      <thead><tr><th>Unit</th><th>Topic</th><th>Chess</th><th>Subway runner</th></tr></thead>
+      <thead><tr><th>Unit</th><th>Topic</th><th>Chess</th><th>Subway runner</th><th>Other games</th></tr></thead>
       <tbody>
-        <tr><td class="u">Unit 1</td><td>Order, size, degree sequence</td><td>Degree heatmap and chart per piece</td><td>Degree chart of the track</td></tr>
-        <tr><td class="u">Unit 1</td><td>Regular graphs</td><td>Checks regularity (none of the pieces are)</td><td>Checked live</td></tr>
-        <tr><td class="u">Unit 1</td><td>Bipartite graphs</td><td>Knight is bipartite; king and queen are not</td><td>Always bipartite: even vs odd steps</td></tr>
-        <tr><td class="u">Unit 1</td><td>Complement, matrices</td><td>Complement size, live adjacency matrix</td><td>Complement size</td></tr>
-        <tr><td class="u">Unit 1</td><td>Connected graphs</td><td>Bishop graph splits into 2 components</td><td>Trains can disconnect the track</td></tr>
-        <tr><td class="u">Unit 2</td><td>Cut-vertices and bridges</td><td>Counted per piece</td><td>Cut-vertices drawn on the track</td></tr>
-        <tr><td class="u">Unit 2</td><td>Hamiltonian graphs</td><td>Knight's tour, with a parity proof when impossible</td><td>-</td></tr>
-        <tr><td class="u">Unit 2</td><td>Eulerian graphs</td><td>Odd-degree test</td><td>Odd-degree test</td></tr>
-        <tr><td class="u">Unit 2</td><td>Digraphs, paths</td><td>-</td><td>Run counting and fewest-switch route</td></tr>
-        <tr><td class="u">Unit 3</td><td>Matching, 1-factor</td><td>Perfect matching taken from the tour</td><td>-</td></tr>
-        <tr><td class="u">Unit 3</td><td>Planar graphs, Euler's formula</td><td>Non-planarity proved by the edge bound</td><td>Non-planarity proved by the edge bound</td></tr>
+        <tr><td class="u">Unit 1</td><td>Order, size, degree sequence</td><td>Degree heatmap and chart per piece</td><td>Degree chart of the track</td><td>One-stroke degree sequence and handshake check</td></tr>
+        <tr><td class="u">Unit 1</td><td>Regular graphs</td><td>Checks regularity (none of the pieces are)</td><td>Checked live</td><td>-</td></tr>
+        <tr><td class="u">Unit 1</td><td>Bipartite graphs</td><td>Knight is bipartite; king and queen are not</td><td>Always bipartite: even vs odd steps</td><td>Maze tree is bipartite</td></tr>
+        <tr><td class="u">Unit 1</td><td>Complement, matrices</td><td>Complement size, live adjacency matrix</td><td>Complement size</td><td>-</td></tr>
+        <tr><td class="u">Unit 1</td><td>Connected graphs</td><td>Bishop graph splits into 2 components</td><td>Trains can disconnect the track</td><td>Flood-It components (BFS) and region graph</td></tr>
+        <tr><td class="u">Unit 2</td><td>Cut-vertices and bridges</td><td>Counted per piece</td><td>Cut-vertices drawn on the track</td><td>Maze: every passage is a bridge</td></tr>
+        <tr><td class="u">Unit 2</td><td>Hamiltonian graphs</td><td>Knight's tour, with a parity proof when impossible</td><td>-</td><td>-</td></tr>
+        <tr><td class="u">Unit 2</td><td>Eulerian graphs</td><td>Odd-degree test</td><td>Odd-degree test</td><td><b>One-stroke puzzle: playable Euler trails, Hierholzer solver, designer</b></td></tr>
+        <tr><td class="u">Unit 2</td><td>Digraphs, paths</td><td>-</td><td>Run counting and fewest-switch route</td><td>Maze BFS escape; Flood-It eccentricity bound</td></tr>
+        <tr><td class="u">Unit 2</td><td>Trees, rooted trees</td><td>-</td><td>-</td><td><b>Tic-tac-toe game tree and minimax</b></td></tr>
+        <tr><td class="u">Unit 2</td><td>Spanning trees</td><td>-</td><td>-</td><td><b>Maze builder: DFS and Kruskal, E = V − 1</b></td></tr>
+        <tr><td class="u">Unit 3</td><td>Matching, 1-factor</td><td>Perfect matching taken from the tour</td><td>-</td><td>-</td></tr>
+        <tr><td class="u">Unit 3</td><td>Planar graphs, Euler's formula</td><td>Non-planarity proved by the edge bound</td><td>Non-planarity proved by the edge bound</td><td>-</td></tr>
       </tbody>
     </table></div>
   </div>
 
-  <div class="panel">
-    <div class="panel-head"><h2>Core code (Python + NetworkX, for the report)</h2></div>
-<pre><span class="c"># Chess: knight graph on an n x n board</span>
-import networkx as nx
+  <details class="panel code-drawer">
+    <summary>
+      <span class="code-ic" aria-hidden="true">&lt;/&gt;</span>
+      <span class="code-sum"><b>Peek at the code</b><small>Python + NetworkX, one short snippet per game. Full version in python/graph_analysis.py</small><span class="code-chips"><span class="code-chip">♞ Chess</span><span class="code-chip">🚇 Subway runner</span><span class="code-chip">✎ One-stroke</span><span class="code-chip">▦ Flood-It</span><span class="code-chip"># Tic-tac-toe</span><span class="code-chip">⌗ Maze builder</span></span></span>
+      <span class="code-open"><span class="when-closed">Show code</span><span class="when-open">Hide code</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+    </summary>
+    <div class="code-body">
+      <div class="code-tabs" role="tablist" aria-label="Choose a game"><button class="code-tab" role="tab" data-code="chess" aria-selected="true"><span class="ct-ic">♞</span>Chess</button><button class="code-tab" role="tab" data-code="subway" aria-selected="false"><span class="ct-ic">🚇</span>Subway runner</button><button class="code-tab" role="tab" data-code="stroke" aria-selected="false"><span class="ct-ic">✎</span>One-stroke</button><button class="code-tab" role="tab" data-code="flood" aria-selected="false"><span class="ct-ic">▦</span>Flood-It</button><button class="code-tab" role="tab" data-code="ttt" aria-selected="false"><span class="ct-ic">#</span>Tic-tac-toe</button><button class="code-tab" role="tab" data-code="maze" aria-selected="false"><span class="ct-ic">⌗</span>Maze builder</button></div>
+      <div class="code-pane" data-pane="chess"><div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">chess.py · Knight move graph</span><button class="code-copy" type="button">Copy</button></div><pre>import networkx as nx
+
 def knight_graph(n=8):
+    """Vertices = squares. Edge = a knight can jump between them."""
     G = nx.Graph()
     jumps = [(1,2),(2,1),(-1,2),(-2,1),(1,-2),(2,-1),(-1,-2),(-2,-1)]
     for r in range(n):
@@ -425,8 +591,10 @@ def knight_graph(n=8):
                     G.add_edge((r, c), (r+dr, c+dc))
     return G
 
-<span class="c"># Subway: 3-lane track, trains remove cells</span>
-def track_graph(length, trains):          <span class="c"># trains = set of (lane, step)</span>
+G = knight_graph()
+print(G.number_of_nodes(), G.number_of_edges())   <span class="c"># 64 168</span>
+print(nx.is_bipartite(G))                          <span class="c"># True</span></pre></div><div class="code-pane" data-pane="subway" hidden><div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">subway.py · Track digraph</span><button class="code-copy" type="button">Copy</button></div><pre>def track_graph(length, trains):          <span class="c"># trains = set of (lane, step)</span>
+    """Vertices = free cells. Edge = one step forward, same or next lane."""
     G = nx.DiGraph()
     for s in range(length - 1):
         for lane in range(3):
@@ -436,17 +604,68 @@ def track_graph(length, trains):          <span class="c"># trains = set of (lan
                     G.add_edge(a, b)
     return G
 
-G = knight_graph()
-print(G.number_of_nodes(), G.number_of_edges())   <span class="c"># 64 168</span>
-print(nx.is_bipartite(G))                          <span class="c"># True</span>
-print(list(nx.articulation_points(track_graph(20, {(0,5),(2,5)}).to_undirected())))</pre>
-  </div>
+T = track_graph(20, {(0, 5), (2, 5)})
+print(list(nx.articulation_points(T.to_undirected())))   <span class="c"># choke points</span></pre></div><div class="code-pane" data-pane="stroke" hidden><div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">stroke.py · Euler trails</span><button class="code-copy" type="button">Copy</button></div><pre>def one_stroke(G):
+    """Euler's theorem: connected and 0 or 2 odd-degree vertices."""
+    odd = [v for v in G if G.degree(v) % 2]
+    if not nx.is_connected(G) or len(odd) not in (0, 2):
+        return None
+    return list(nx.eulerian_path(G))      <span class="c"># Hierholzer's algorithm</span>
+
+house = nx.Graph([(0,1),(1,3),(3,2),(2,0),(2,4),(4,3),(0,3),(1,2)])
+print(one_stroke(house))                  <span class="c"># a valid stroke, v1 -&gt; v2</span>
+print(one_stroke(nx.complete_graph(4)))   <span class="c"># None: 4 odd vertices</span></pre></div><div class="code-pane" data-pane="flood" hidden><div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">flood.py · Region graph</span><button class="code-copy" type="button">Copy</button></div><pre>def flood_regions(board):
+    """Same-colour regions = connected components of the grid graph."""
+    n = len(board)
+    grid = nx.grid_2d_graph(n, n)
+    same = nx.Graph()
+    same.add_nodes_from(grid)
+    same.add_edges_from((a, b) for a, b in grid.edges
+                        if board[a[0]][a[1]] == board[b[0]][b[1]])
+    regions = list(nx.connected_components(same))
+    where = {cell: k for k, reg in enumerate(regions) for cell in reg}
+    R = nx.Graph()                        <span class="c"># region-adjacency graph</span>
+    R.add_edges_from((where[a], where[b]) for a, b in grid.edges
+                     if where[a] != where[b])
+    return regions, R, where
+
+regions, R, where = flood_regions(board)
+print(nx.eccentricity(R, where[(0, 0)]))  <span class="c"># lower bound on moves needed</span></pre></div><div class="code-pane" data-pane="ttt" hidden><div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">ttt.py · Minimax</span><button class="code-copy" type="button">Copy</button></div><pre>LINES = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+
+def winner(b):
+    for x, y, z in LINES:
+        if b[x] != "." and b[x] == b[y] == b[z]:
+            return b[x]
+    return "draw" if "." not in b else None
+
+def minimax(b, turn):
+    """+1 if X wins with perfect play, 0 for a draw, -1 if O wins."""
+    w = winner(b)
+    if w:
+        return {"X": 1, "O": -1, "draw": 0}[w]
+    nxt = "O" if turn == "X" else "X"
+    vals = [minimax(b[:i] + turn + b[i+1:], nxt)
+            for i, c in enumerate(b) if c == "."]
+    return max(vals) if turn == "X" else min(vals)
+
+print(minimax("." * 9, "X"))              <span class="c"># 0: perfect play is a draw</span></pre></div><div class="code-pane" data-pane="maze" hidden><div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">maze.py · Spanning tree + BFS</span><button class="code-copy" type="button">Copy</button></div><pre>maze = nx.random_spanning_tree(nx.grid_2d_graph(14, 9))
+
+print(nx.is_tree(maze))                                       <span class="c"># True</span>
+print(maze.number_of_edges() == maze.number_of_nodes() - 1)   <span class="c"># E = V - 1</span>
+print(sum(1 for v in maze if maze.degree(v) == 1))            <span class="c"># dead ends</span>
+print(nx.shortest_path_length(maze, (0, 0), (13, 8)))         <span class="c"># BFS escape</span></pre></div>
+    </div>
+  </details>
 </section>
 </main>
 
 <script src="js/graph.js"></script>
 <script src="js/chess.js"></script>
 <script src="js/subway.js"></script>
+<script src="js/onestroke.js"></script>
+<script src="js/flood.js"></script>
+<script src="js/tictactoe.js"></script>
+<script src="js/maze.js"></script>
 <script src="js/animation.js"></script>
 <script src="js/app.js"></script>
 </body>
